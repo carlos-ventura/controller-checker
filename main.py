@@ -1,4 +1,5 @@
 import argparse
+import time
 
 import pygame
 
@@ -6,13 +7,13 @@ from control import add_offset, alert_player, get_angle, is_angle_within, quadra
 from controller import controller
 
 
-def main(quadrant: str, time: str):
+def main(quadrant: str, time_: str):
     pygame.init()
     angle_bounds = quadrant_to_angle_bounds(quadrant)
     add_offset(angle_bounds)
     try:
         if quadrant == "random":
-            pygame.time.set_timer(pygame.USEREVENT, int(float(time) * 60 * 1000))
+            pygame.time.set_timer(pygame.USEREVENT, int(float(time_) * 60 * 1000))
         while True:
             pygame.event.pump()
             angle = get_angle(controller)
