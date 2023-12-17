@@ -42,8 +42,6 @@ def quadrant_to_angle_bounds(quadrant: str) -> list:
     if local_quadrant == "random":
         local_quadrant = str(random.randint(1, 4))
 
-    print(local_quadrant)
-
     return QUADRANT_TO_ANGLES_MAP[local_quadrant].copy()
 
 

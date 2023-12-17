@@ -2,13 +2,14 @@ import argparse
 
 import pygame
 
-from control import alert_player, get_angle, is_angle_within, quadrant_to_angle_bounds
+from control import add_offset, alert_player, get_angle, is_angle_within, quadrant_to_angle_bounds
 from controller import controller
 
 
 def main(quadrant: str, time: str):
     pygame.init()
     angle_bounds = quadrant_to_angle_bounds(quadrant)
+    add_offset(angle_bounds)
     try:
         if quadrant == "random":
             pygame.time.set_timer(pygame.USEREVENT, int(float(time) * 60 * 1000))
@@ -23,6 +24,7 @@ def main(quadrant: str, time: str):
             for event in pygame.event.get():
                 if event.type == pygame.USEREVENT:
                     angle_bounds = quadrant_to_angle_bounds(quadrant)
+                    add_offset(angle_bounds)
     except KeyboardInterrupt:
         pass
     finally:
